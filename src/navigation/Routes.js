@@ -9,10 +9,10 @@ import { ThemeContext } from '../context/ThemeContext';
 const Stack = createStackNavigator();
 export default function Routes() {
     //to suppoer only live dark/ligght theme (not theme change functionlaity inside app) - brst implementation
-    const appTheme = useColorScheme();
+    //const appTheme = useColorScheme();
 
    // app theme (to support theme change functionality inside app)
-    //const { appTheme } = useContext(ThemeContext); (performance issue)
+    const { appTheme } = useContext(ThemeContext); //(performance issue)
     //console.log("app theme is", appTheme);
 
 

@@ -68,7 +68,26 @@ export const ThemeProvider = ({ children }) => {
     }, [])
 
 
-
+   
+    // //app background listener for changing themes
+    // useEffect(() => {
+    //     const appStateListener = AppState.addEventListener(
+    //         'change',
+    //         nextAppState => {
+    //             console.log('Next AppState is: ', nextAppState);
+    //             //foreground
+    //             if (nextAppState == 'active') {
+    //                 console.log("app in foreground");
+    //                 getAppTheme();
+                    
+    //             }
+    //         },
+    //     );
+    //     return () => {
+    //         //removing listener
+    //         appStateListener?.remove();
+    //     };
+    // }, []);
 
     return (
         <ThemeContext.Provider value={{
