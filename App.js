@@ -113,54 +113,104 @@ const App = () => {
 
     ]).start();
   }
+
+  //inter polation
+  const interpolationX = useRef(new Animated.Value(0)).current;
+  const interpolation = () => {
+    Animated.timing(interpolationX, {
+      toValue: 100,
+      duration: 1000,
+      delay: 100,
+      useNativeDriver: false
+    }).start()
+
+  }
   return (
-    <ThemeProvider>
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          {/* time and stping animation */}
-          <Animated.View style={{ ...styles.subContainer, transform: [{ translateY: translationY }] }}>
-          </Animated.View>
-          <View style={{ ...styles.buttonRow, marginTop: 100 }}>
-            <Button title="timing" onPress={startTimeAnimation} />
-            <View style={{ marginVertical: 5 }} />
-            <Button title="Spring" onPress={startSpringAnimation} />
-          </View>
-          {/* fad in & out staggered animation */}
-          <Animated.View
-            style={{ ...styles.subContainer, marginTop: 10, opacity: firstOpacity }}
-          />
-          <Animated.View
-            style={{ ...styles.subContainer, marginTop: 10, opacity: secondOpacity }}
-          />
-          <Animated.View
-            style={{ ...styles.subContainer, marginTop: 10, opacity: thirdOpacity }}
-          />
-          <View style={styles.buttonRow}>
-            <Button title="Fade In" onPress={fadeIn} />
-            <View style={{ marginVertical: 5 }} />
-            <Button title="Fade Out" onPress={fadeOut} />
-          </View>
 
-          {/* sequence animation */}
-          <Animated.View style={{ ...styles.subContainer, transform: [{ translateY: translation.y }, { translateX: translation.x }] }}>
-          </Animated.View>
-          <View style={{ ...styles.buttonRow, marginTop: 100 }}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        {/* time and stping animation */}
+        <Animated.View style={{ ...styles.subContainer, transform: [{ translateY: translationY }] }}>
+        </Animated.View>
+        <View style={{ ...styles.buttonRow, marginTop: 100 }}>
+          <Button title="timing" onPress={startTimeAnimation} />
+          <View style={{ marginVertical: 5 }} />
+          <Button title="Spring" onPress={startSpringAnimation} />
+        </View>
+        {/* fad in & out staggered animation */}
+        <Animated.View
+          style={{ ...styles.subContainer, marginTop: 10, opacity: firstOpacity }}
+        />
+        <Animated.View
+          style={{ ...styles.subContainer, marginTop: 10, opacity: secondOpacity }}
+        />
+        <Animated.View
+          style={{ ...styles.subContainer, marginTop: 10, opacity: thirdOpacity }}
+        />
+        <View style={styles.buttonRow}>
+          <Button title="Fade In" onPress={fadeIn} />
+          <View style={{ marginVertical: 5 }} />
+          <Button title="Fade Out" onPress={fadeOut} />
+        </View>
 
-            <Button title="sequence" onPress={startSquenceAnimation} />
-            <View style={{ marginVertical: 5 }} />
-            <Button title="Parallel" onPress={startParallelAnimation} />
-            <View style={{ marginVertical: 5 }} />
-            <Button title="combiend" onPress={startcombinedAnimation} />
-          </View>
+        {/* sequence animation */}
+        <Animated.View style={{ ...styles.subContainer, transform: [{ translateY: translation.y }, { translateX: translation.x }] }}>
+        </Animated.View>
+        <View style={{ ...styles.buttonRow, marginTop: 100 }}>
+
+          <Button title="sequence" onPress={startSquenceAnimation} />
+          <View style={{ marginVertical: 5 }} />
+          <Button title="Parallel" onPress={startParallelAnimation} />
+          <View style={{ marginVertical: 5 }} />
+          <Button title="combiend" onPress={startcombinedAnimation} />
+        </View>
 
 
-          <View>
+        <View>
 
-          </View>
+        </View>
+        {/* Interpolation */}
+        <Text style={styles.title}>Interpolation</Text>
+        <Animated.View
+          style={{
+            ...styles.subContainer,
+            backgroundColor: interpolationX.interpolate({
+              inputRange: [0, 100],
+              outputRange: ['tomato', 'gold'],
 
-        </ScrollView>
-      </SafeAreaView>
-    </ThemeProvider>
+            }),
+            marginBottom: 50,
+            alignSelf: 'center',
+            transform: [
+              { translateX: interpolationX },
+              {
+                rotate: interpolationX.interpolate({
+                  inputRange: [0, 100],
+                  outputRange: ['0deg', '360deg']
+                })
+
+              }],
+            opacity: interpolationX.interpolate({
+              inputRange: [25, 75,100],
+              outputRange: [0, 1,0],
+              extrapolate: 'clamp'
+            })
+
+
+          }}
+
+        />
+        <View style={styles.buttonRow}>
+          <Button title="InterPolation" onPress={interpolation} />
+        </View>
+
+
+
+
+
+      </ScrollView>
+    </SafeAreaView>
+
 
 
   )
@@ -188,4 +238,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
 
   },
+  title: {
+    color: '#000',
+    fontWeight: 'bold',
+    marginHorizontal: 10,
+    fontSize: 20
+  }
 })
