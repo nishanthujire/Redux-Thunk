@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import { Animated, Easing } from 'react-native'
 const Home = () => {
 
+  //view opacity
   const translationY = useRef(new Animated.Value(0)).current
   //timing animation
   const startTimeAnimation = () => {
