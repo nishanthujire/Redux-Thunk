@@ -1,8 +1,7 @@
 
-import Products from '../screens/Products';
-import ProductDetails from '../screens/ProductDetails';
 import { NavigationContainer } from '@react-navigation/native';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
+import YtScrollView from '../screens/YtScrollView';
 const Stack = createSharedElementStackNavigator();
 
 export default function Routes() {
@@ -11,13 +10,9 @@ export default function Routes() {
             <Stack.Navigator
                 mode="modal"
                 screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="Products" component={Products} />
-                <Stack.Screen
-                    name="ProductDetails"
-                    sharedElements={(route) => {
-                        return [`${route.params.item.id}`];
-                    }}
-                    component={ProductDetails} />
+                <Stack.Screen name="Products" component={YtScrollView} />
+               
+
             </Stack.Navigator>
         </NavigationContainer >
     );
