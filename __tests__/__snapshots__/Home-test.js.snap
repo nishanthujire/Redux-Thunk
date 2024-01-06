@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`home render test 1`] = `
+<View>
+  <Text>
+    Home
+  </Text>
+  <Text>
+    Home 456
+  </Text>
+</View>
+`;

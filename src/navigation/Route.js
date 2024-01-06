@@ -11,6 +11,10 @@ export default function Routes() {
                 mode="modal"
                 screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Products" component={YtScrollView} />
+
+                  
+
+
                
 
             </Stack.Navigator>
