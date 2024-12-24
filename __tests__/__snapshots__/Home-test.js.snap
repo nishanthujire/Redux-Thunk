@@ -6,7 +6,7 @@ exports[`home render test 1`] = `
     Home
   </Text>
   <Text>
-    Home 456
+    Home 476
   </Text>
 </View>
 `;
