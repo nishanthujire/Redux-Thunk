@@ -1,1 +1,1 @@
-Redux Toolkit using persistent storage and saga middleware example
+using Redux-thunk as an middleware example (redux toolkit)

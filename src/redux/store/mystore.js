@@ -1,26 +1,17 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import userReducer from '../slice/Userslice';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import onlineUserReducer from '../slice/OnlineUserSlice'
-import sagaReducer from '../saga/userSlice'
-
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from '../saga/rootSaga';
+import onlineUserReducer from '../slice/OnlineUserSlice';
 
 const rootReducer = combineReducers({
-  user: userReducer,
   onlineUsers:onlineUserReducer,
-  sagaUser:sagaReducer
 });
 
-//saga middleware
-const sagaMiddleWare = createSagaMiddleware()
 
 //using aysnc storage to sotre data in persistant storage
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage, // Fix: Use `storage` key
+  storage: AsyncStorage, 
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -28,11 +19,10 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const mystore = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false,thunk:false }).concat(sagaMiddleWare),
+    getDefaultMiddleware({ serializableCheck: false })
 });
 
-sagaMiddleWare.run(rootSaga)
 
-const persistedStore = persistStore(mystore); // Fix: Correct spelling
+const persistedStore = persistStore(mystore); 
 
 export { mystore, persistedStore };
